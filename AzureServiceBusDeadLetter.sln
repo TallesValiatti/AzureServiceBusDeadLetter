@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "azureservicebusdeadletter.api", "azureservicebusdeadletter.api\azureservicebusdeadletter.api.csproj", "{EE48C5D0-94E0-4159-B4C1-43A288B19096}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "azureservicebusdeadletter.worker.deadletter", "azureservicebusdeadletter.worker.deadletter\azureservicebusdeadletter.worker.deadletter.csproj", "{D42C76A6-40F6-4BE3-9F4A-0352524A8266}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "azureservicebusdeadletter.worker", "azureservicebusdeadletter.worker\azureservicebusdeadletter.worker.csproj", "{A612895F-37DF-4AB5-8D42-C250CB4D5EEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "azureservicebusdeadletter.shared", "azureservicebusdeadletter.shared\azureservicebusdeadletter.shared.csproj", "{DF5831FC-3F29-4CAD-8C63-96C63B431F72}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE48C5D0-94E0-4159-B4C1-43A288B19096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE48C5D0-94E0-4159-B4C1-43A288B19096}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE48C5D0-94E0-4159-B4C1-43A288B19096}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE48C5D0-94E0-4159-B4C1-43A288B19096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D42C76A6-40F6-4BE3-9F4A-0352524A8266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D42C76A6-40F6-4BE3-9F4A-0352524A8266}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D42C76A6-40F6-4BE3-9F4A-0352524A8266}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D42C76A6-40F6-4BE3-9F4A-0352524A8266}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A612895F-37DF-4AB5-8D42-C250CB4D5EEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A612895F-37DF-4AB5-8D42-C250CB4D5EEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A612895F-37DF-4AB5-8D42-C250CB4D5EEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A612895F-37DF-4AB5-8D42-C250CB4D5EEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF5831FC-3F29-4CAD-8C63-96C63B431F72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF5831FC-3F29-4CAD-8C63-96C63B431F72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF5831FC-3F29-4CAD-8C63-96C63B431F72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF5831FC-3F29-4CAD-8C63-96C63B431F72}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
