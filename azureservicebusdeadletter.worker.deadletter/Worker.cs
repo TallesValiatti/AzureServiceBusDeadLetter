@@ -1,20 +1,18 @@
+using azureservicebusdeadletter.shared.Integration;
+
 namespace azureservicebusdeadletter.worker.deadletter;
 
 public class Worker : BackgroundService
 {
-    private readonly ILogger<Worker> _logger;
+    private readonly IPaymentIntegrationBus _paymentIntegrationBus;
 
-    public Worker(ILogger<Worker> logger)
+    public Worker(IPaymentIntegrationBus paymentIntegrationBus)
     {
-        _logger = logger;
+        _paymentIntegrationBus = paymentIntegrationBus;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        while (!stoppingToken.IsCancellationRequested)
-        {
-            _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-            await Task.Delay(1000, stoppingToken);
-        }
+        await _paymentIntegrationBus.StartReceiveDeadLetterIntegrationMessages();
     }
 }

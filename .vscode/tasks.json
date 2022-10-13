@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/azureservicebusdeadletter.api/azureservicebusdeadletter.api.csproj",
+                "${workspaceFolder}/azureservicebusdeadletter.worker.deadletter/azureservicebusdeadletter.worker.deadletter.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/azureservicebusdeadletter.api/azureservicebusdeadletter.api.csproj",
+                "${workspaceFolder}/azureservicebusdeadletter.worker.deadletter/azureservicebusdeadletter.worker.deadletter.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/azureservicebusdeadletter.api/azureservicebusdeadletter.api.csproj"
+                "${workspaceFolder}/azureservicebusdeadletter.worker.deadletter/azureservicebusdeadletter.worker.deadletter.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
