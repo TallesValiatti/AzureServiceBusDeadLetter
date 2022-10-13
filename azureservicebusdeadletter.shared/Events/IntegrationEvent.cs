@@ -1,11 +1,11 @@
-namespace azureservicebusdeadletter.shared.Messages
+namespace azureservicebusdeadletter.shared.Events
 {
-    public abstract class IntegrationMessage
+    public abstract class IntegrationEvent
     {
         public DateTime Date { get; set; }
         public Guid CorrelationId { get; set; }
 
-        public IntegrationMessage(Guid correlationId)
+        public IntegrationEvent(Guid correlationId)
         {
             CorrelationId = correlationId;
             Date = DateTime.Now;

@@ -1,11 +1,11 @@
-using azureservicebusdeadletter.shared.Messages;
+using azureservicebusdeadletter.shared.Events;
 
 namespace azureservicebusdeadletter.shared.Integration
 {
     public interface IPaymentIntegrationBus
     {
-        Task SendPaymentCreatedAsync(PaymentCreatedIntegrationMessage message);
-        Task StartReceiveIntegrationMessages(Func<PaymentCreatedIntegrationMessage, int, Task> messageHandler);
-        Task StartReceiveDeadLetterIntegrationMessages();
+        Task SendPaymentCreatedAsync(PaymentCreatedIntegrationEvent @event);
+        Task StartReceiveIntegrationEvents(Func<PaymentCreatedIntegrationEvent, int, Task> eventHandler);
+        Task StartReceiveDeadLetterIntegrationEvents();
     }
 }

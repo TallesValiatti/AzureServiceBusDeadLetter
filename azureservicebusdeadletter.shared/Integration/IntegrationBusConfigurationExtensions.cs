@@ -10,11 +10,11 @@ namespace azureservicebusdeadletter.shared.Integration
         {
             services.AddAzureClients(builder =>
             {
-            var serviceBusConnectionString = configuration.GetSection("ServiceBusConnectionString").Value;
-            var serviceBusNamespace = configuration.GetSection("ServiceBusNamespace").Value;
+                var serviceBusConnectionString = configuration.GetSection("ServiceBusConnectionString").Value;
+                var serviceBusNamespace = configuration.GetSection("ServiceBusNamespace").Value;
 
-            builder.AddServiceBusClient(serviceBusConnectionString)
-                   .WithName(serviceBusNamespace);
+                builder.AddServiceBusClient(serviceBusConnectionString) 
+                       .WithName(serviceBusNamespace);
             });
 
             services.AddSingleton<IPaymentIntegrationBus, PaymentIntegrationBus>();

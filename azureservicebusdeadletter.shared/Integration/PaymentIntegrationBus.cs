@@ -1,6 +1,6 @@
 using System.Text.Json;
 using Azure.Messaging.ServiceBus;
-using azureservicebusdeadletter.shared.Messages;
+using azureservicebusdeadletter.shared.Events;
 using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -24,15 +24,16 @@ namespace azureservicebusdeadletter.shared.Integration
             _logger = logger;
         }
 
-        public async Task SendPaymentCreatedAsync(PaymentCreatedIntegrationMessage message)
+        public async Task SendPaymentCreatedAsync(PaymentCreatedIntegrationEvent @event)
         {
             var sender = _serviceBusClient.CreateSender(_queueName);
 
-            var body = JsonSerializer.Serialize(message);
+            var body = JsonSerializer.Serialize(@event);
 
             await sender.SendMessageAsync(new ServiceBusMessage(body));
         }
-        public async Task StartReceiveIntegrationMessages(Func<PaymentCreatedIntegrationMessage, int, Task> messageHandler)
+        
+        public async Task StartReceiveIntegrationEvents(Func<PaymentCreatedIntegrationEvent, int, Task> messageHandler)
         {
             var options = new ServiceBusProcessorOptions
             {
@@ -47,9 +48,9 @@ namespace azureservicebusdeadletter.shared.Integration
             {
                 try
                 {
-                    var message = JsonSerializer.Deserialize<PaymentCreatedIntegrationMessage>(arg.Message.Body.ToString());
+                    var @event = JsonSerializer.Deserialize<PaymentCreatedIntegrationEvent>(arg.Message.Body.ToString());
                   
-                    await messageHandler.Invoke(message!, arg.Message.DeliveryCount);    
+                    await messageHandler.Invoke(@event!, arg.Message.DeliveryCount);    
                   
                     await arg.CompleteMessageAsync(arg.Message);
                 }
@@ -65,7 +66,7 @@ namespace azureservicebusdeadletter.shared.Integration
             await _processor.StartProcessingAsync();
         }   
 
-         public async Task StartReceiveDeadLetterIntegrationMessages()
+         public async Task StartReceiveDeadLetterIntegrationEvents()
         {
             var options = new ServiceBusProcessorOptions
             {
