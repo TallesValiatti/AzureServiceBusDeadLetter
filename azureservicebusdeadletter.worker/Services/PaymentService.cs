@@ -15,25 +15,24 @@ namespace azureservicebusdeadletter.worker.Services
         {
             try
             {
-                _logger.LogInformation($" Correlation Id: {_correlationId.Get()} - Starting payment processing");
-
-                // Process the message
+                this.LogInformation($"Starting payment processing");
+                
+                //  Payment processing
     
-                // Random rnd = new Random();
-                // int value  = rnd.Next(1, 3);
-
-                // if(value.Equals(2))
-                   throw new Exception("Some failured");
-
-                _logger.LogInformation($" Correlation Id: {_correlationId.Get()} - Payment processing succeeded");   
-
+                this.LogInformation($"Successful payment processing");
+                
                 return Task.CompletedTask;
             }
             catch (System.Exception ex)
             {
-                _logger.LogWarning($" Correlation Id: {_correlationId.Get()} - Payment processing failed - {ex.Message}");
+                this.LogInformation($"Payment processing failure: {ex.Message}");
                 throw;
             }
+            
+        }
+        private void LogInformation(string message)
+        {
+            _logger.LogInformation($"{_correlationId.Get().ToString()} - {message} - {DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff")}");
         }
     }
 }

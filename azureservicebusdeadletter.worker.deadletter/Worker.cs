@@ -13,6 +13,6 @@ public class Worker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        await _paymentIntegrationBus.StartReceiveDeadLetterIntegrationMessages();
+        await _paymentIntegrationBus.StartReceiveDeadLetterIntegrationEvents();
     }
 }

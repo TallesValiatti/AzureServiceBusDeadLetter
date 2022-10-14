@@ -1,7 +1,7 @@
 using azureservicebusdeadletter.shared.CorrelationId;
 using azureservicebusdeadletter.shared.Entities;
 using azureservicebusdeadletter.shared.Integration;
-using azureservicebusdeadletter.shared.Messages;
+using azureservicebusdeadletter.shared.Events;
 using Microsoft.AspNetCore.Mvc;
 
 namespace azureservicebusdeadletter.api.Controllers;
@@ -26,25 +26,30 @@ public class PaymentController : ControllerBase
     [HttpPost(Name = "CreatePayment")]
     public async Task<IActionResult> Post()
     {
-        _logger.LogInformation($" Correlation Id: {_correlationId.Get()} - Creating payment");
-        
+        this.LogInformation("Creating payment");
+     
         var payment = new Payment();
         
-        _logger.LogInformation($" Correlation Id: {_correlationId.Get()} - Payment created");
+        this.LogInformation("Payment created");
         
-        _logger.LogInformation($" Correlation Id: {_correlationId.Get()} - Salving payment");
+        this.LogInformation("Salving payment");
         
         // Save the payment aggregate in the database
         
-        _logger.LogInformation($" Correlation Id: {_correlationId.Get()} - Payment saved");
+        this.LogInformation("Payment saved");
         
-        _logger.LogInformation($" Correlation Id: {_correlationId.Get()} - Sending PaymentCreatedIntegrationMessage");
+        this.LogInformation("Sending PaymentCreatedIntegrationEvent");
         
-        var paymentCreatedMessage = new PaymentCreatedIntegrationMessage(payment.Id, _correlationId.Get());
+        var paymentCreatedMessage = new PaymentCreatedIntegrationEvent(payment.Id, _correlationId.Get());
         await _paymentIntegrationBus.SendPaymentCreatedAsync(paymentCreatedMessage);
-        
-        _logger.LogInformation($" Correlation Id: {_correlationId.Get()} - PaymentCreatedIntegrationMessage sent");
+
+        this.LogInformation("PaymentCreatedIntegrationEvent sent");        
         
         return Ok();
+    }
+
+    private void LogInformation(string message)
+    {
+        _logger.LogInformation($"{_correlationId.Get()} - {message} - {DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff")}");
     }
 }
