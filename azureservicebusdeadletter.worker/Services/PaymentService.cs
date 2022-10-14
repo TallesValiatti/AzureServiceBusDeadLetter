@@ -18,8 +18,7 @@ namespace azureservicebusdeadletter.worker.Services
                 this.LogInformation($"Starting payment processing");
                 
                 //  Payment processing
-                throw new Exception("Some exception");
-    
+                
                 this.LogInformation($"Successful payment processing");
                 
                 return Task.CompletedTask;
