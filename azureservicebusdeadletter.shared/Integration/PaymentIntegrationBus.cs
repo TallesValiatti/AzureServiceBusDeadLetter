@@ -77,11 +77,11 @@ namespace azureservicebusdeadletter.shared.Integration
 
             _processor = _serviceBusClient.CreateProcessor(deadLetterQueue, options);
             
-            _processor.ProcessErrorAsync +=  ErrorHandler;
+            _processor.ProcessErrorAsync += ErrorHandler;
             
             _processor.ProcessMessageAsync += async (arg) => 
             {
-                _logger.LogInformation("Receiving dead letter message");
+                _logger.LogInformation($"Receiving dead letter message - {DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff")}");
 
                 var sender = _serviceBusClient.CreateSender(_queueName);
 
@@ -89,7 +89,7 @@ namespace azureservicebusdeadletter.shared.Integration
                 
                 await arg.CompleteMessageAsync(arg.Message);
 
-                _logger.LogInformation("Dead letter message resubmitted");
+                _logger.LogInformation($"Dead letter message resubmitted - {DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff")}");
             };
 
             // start processing

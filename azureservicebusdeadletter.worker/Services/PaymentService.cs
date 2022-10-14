@@ -18,6 +18,7 @@ namespace azureservicebusdeadletter.worker.Services
                 this.LogInformation($"Starting payment processing");
                 
                 //  Payment processing
+                throw new Exception("Some exception");
     
                 this.LogInformation($"Successful payment processing");
                 
@@ -25,7 +26,7 @@ namespace azureservicebusdeadletter.worker.Services
             }
             catch (System.Exception ex)
             {
-                this.LogInformation($"Payment processing failure: {ex.Message}");
+                this.LogError($"Payment processing failure: {ex.Message}");
                 throw;
             }
             
@@ -34,5 +35,10 @@ namespace azureservicebusdeadletter.worker.Services
         {
             _logger.LogInformation($"{_correlationId.Get().ToString()} - {message} - {DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff")}");
         }
+
+        private void LogError(string message)
+        {
+            _logger.LogError($"{_correlationId.Get().ToString()} - {message} - {DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff")}");
+        }      
     }
 }
